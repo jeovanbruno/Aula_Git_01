@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabela com Status</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+        }
+        table {
+            width: 80%;
+            margin: 20px auto;
+            border-collapse: collapse;
+            border: 1px solid #ccc;
+            background-color: white;
+        }
+        th, td {
+            padding: 10px;
+            text-align: center;
+            border: 1px solid #ccc;
+        }
+        select {
+            padding: 5px;
+            width: 100%;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 14px;
+        }
+        .status-option {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1 style="text-align:center;">Tabela de Status</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody id="tabela-status">
+            <!-- Linhas geradas por JavaScript -->
+        </tbody>
+    </table>
+</div>
+
+<script>
+    // Função para mudar cor do fundo e da fonte baseado no status selecionado
+    function mudarCorFundoETexto(selectElement) {
+        const status = selectElement.value;
+        if (status === "verde") {
+            selectElement.style.color = "green";  // Cor da fonte
+        } else if (status === "amarelo") {
+            selectElement.style.color = "orange";  // Cor da fonte
+        } else if (status === "vermelho") {
+            selectElement.style.color = "red";  // Cor da fonte
+        } else {
+            selectElement.style.color = "black";  // Cor padrão
+        }
+    }
+
+    // Gerar 30 linhas na tabela com a caixa de seleção
+    function gerarTabela() {
+        const tabela = document.getElementById("tabela-status");
+
+        for (let i = 1; i <= 30; i++) {
+            const row = document.createElement("tr");
+            
+            // Célula do número
+            const cellNum = document.createElement("td");
+            cellNum.textContent = i;
+            row.appendChild(cellNum);
+
+            // Célula da caixa de seleção de status
+            const cellStatus = document.createElement("td");
+            const selectStatus = document.createElement("select");
+
+            // Adicionando opções de status
+            const optionDefault = new Option("Escolha uma opção", "padrão", true, true);
+            const optionAtivo = new Option("Ativo", "verde");
+            optionAtivo.style.color = "green"; // Cor da fonte verde
+            const optionPendente = new Option("Pendente", "amarelo");
+            optionPendente.style.color = "orange"; // Cor da fonte laranja
+            const optionInativo = new Option("Inativo", "vermelho");
+            optionInativo.style.color = "red"; // Cor da fonte vermelha
+
+            // Inserir as opções no select
+            selectStatus.add(optionDefault);
+            selectStatus.add(optionAtivo);
+            selectStatus.add(optionPendente);
+            selectStatus.add(optionInativo);
+
+            // Evento de mudança para alterar a cor da fonte
+            selectStatus.onchange = function() {
+                mudarCorFundoETexto(this);
+            };
+
+            cellStatus.appendChild(selectStatus);
+            row.appendChild(cellStatus);
+
+            // Adicionar a linha na tabela
+            tabela.appendChild(row);
+        }
+    }
+
+    // Chamar função para gerar tabela ao carregar a página
+    window.onload = gerarTabela;
+</script>
+
+</body>
+</html>
+
+
+
+
+
+
+

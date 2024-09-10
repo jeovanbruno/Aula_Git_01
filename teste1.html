@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seleção de Status por Cor</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            transition: background-color 0.5s ease;
+        }
+        .container {
+            margin: 100px auto;
+            padding: 20px;
+            max-width: 300px;
+            text-align: center;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            background-color: white;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+        select {
+            padding: 10px;
+            width: 100%;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+        }
+        .status-option {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Selecione o Status</h1>
+    <select id="status" onchange="mudarCorFundoETexto()">
+        <option value="padrão" class="status-option">Escolha uma opção</option>
+        <option value="verde" class="status-option" style="color: green;">Ativo</option>
+        <option value="amarelo" class="status-option" style="color: orange;">Pendente</option>
+        <option value="vermelho" class="status-option" style="color: red;">Inativo</option>
+    </select>
+</div>
+
+<script>
+    function mudarCorFundoETexto() {
+        const status = document.getElementById("status").value;
+        const select = document.getElementById("status");
+
+        if (status === "verde") {
+            document.body.style.backgroundColor = "#d4edda";  // Verde claro
+            select.style.color = "green";  // Cor da fonte
+        } else if (status === "amarelo") {
+            document.body.style.backgroundColor = "#fff3cd";  // Amarelo claro
+            select.style.color = "orange";  // Cor da fonte
+        } else if (status === "vermelho") {
+            document.body.style.backgroundColor = "#f8d7da";  // Vermelho claro
+            select.style.color = "red";  // Cor da fonte
+        } else {
+            document.body.style.backgroundColor = "#f0f0f0";  // Cor padrão
+            select.style.color = "black";  // Cor da fonte padrão
+        }
+    }
+</script>
+
+</body>
+</html>
